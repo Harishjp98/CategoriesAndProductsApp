@@ -1,0 +1,78 @@
+﻿@model IEnumerable<Products>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<!--Adding containter to add header-->
+
+<div class="container p-6 my-5">
+    <div class="row pt-4">
+        <div class="col">
+            <h2 class="text-primary"> Product List</h2>
+        </div>
+
+        <div class="col text-end">
+            <a asp-asp-controller="Product" asp-action="Create" class="btn btn-outline-primary">
+                <i class="bi bi-plus-lg"></i>   &nbsp;  Create
+            </a>
+        </div>
+
+    </div>
+
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <!--group table header-->
+            <tr>
+                <th>
+                    Product Title
+                </th>  <!--table cell header-->
+                <th>
+                    Description
+                </th>
+               
+                <th>
+                   Price
+                </th>
+                <th>
+                    Category
+                </th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var obj in Model)
+            {
+                <tr>
+                    <td width="30%">
+                        @obj.Title
+                    </td>
+
+                    <td width="30%">
+                        @obj.Description
+                    </td>
+                    <td>
+                        @obj.Price
+                    </td>
+                    <td width="10%">
+                        @obj.Category
+                    </td>
+                    
+                    <td>
+                    </td>
+                    <td>
+                        <div class="w-75 btn btn-group" role="group">
+                           <a asp-controller="Product" asp-action="Edit" asp-route-id=@obj.Id class="btn btn-primary border-danger "> <i class="bi bi-pencil-square"></i>Edit</a>
+                              <a asp-controller="Product" asp-action="Delete" asp-route-id=@obj.Id class="btn btn-danger border-primary "> <i class="bi bi-pencil-square"></i>Remove</a>
+
+                        </div>
+                    </td>
+                </tr>
+
+            }
+        </tbody>
+
+
+    </table>
+
+</div>
